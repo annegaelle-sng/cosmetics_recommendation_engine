@@ -60,40 +60,45 @@ df.to_csv('datasets/url_cosmetic.csv', encoding = 'utf-8-sig', index = False)
 
 #Part 2: scrap info for each products
 
-# df = pd.read_csv('datasets/url_cosmetic.csv')
-# # add columns
-# df2 = pd.DataFrame(columns=['brand', 'name', 'price', 'ingredients'])
-# df = pd.concat([df, df2], axis = 1)
+df = pd.read_csv('datasets/url_cosmetic.csv')
 
-# for i in range(len(df)+1):
-#     url = df.URL[i]
-#     driver.get(url)
-#     time.sleep(5)
+# add columns
+df2 = pd.DataFrame(columns=['brand', 'name', 'price', 'ingredients'])
+df = pd.concat([df, df2], axis = 1)
 
-#     df.brand[i] = driver.find_element(By.CSS_SELECTOR, '.hidden.mb-2.text-sm.md\:block.uppercase').text
-#     df.name[i] = driver.find_element(By.CSS_SELECTOR, '.mb-2.text-xl.font-extrabold.md\:block').text
+for i in range(len(df)+1):
+    url = df.URL[i]
+    driver.get(url)
+    time.sleep(5)
+    
+    #get brands and names
+    df.brand[i] = driver.find_element(By.CSS_SELECTOR, '.hidden.mb-2.text-sm.md\:block.uppercase').text
+    df.name[i] = driver.find_element(By.CSS_SELECTOR, '.mb-2.text-xl.font-extrabold.md\:block').text
 
-#     try:
-#         df.price[i] = driver.find_element(By.XPATH, "//div[@id='price-template--14595359211590__main']/span[@class='text-2xl font-bold']").text
-#     except NoSuchElementException:
-#         df.price[i] = 'No Info'
+    #get prices
+    try:
+        df.price[i] = driver.find_element(By.XPATH, "//div[@id='price-template--14595359211590__main']/span[@class='text-2xl font-bold']").text
+    except NoSuchElementException:
+        df.price[i] = 'No Info'
 
-#     browser = scrollDown(driver, 1)
-#     time.sleep(5)
-#     browser = scrollDown(driver, 1)
-#     time.sleep(5)
+    browser = scrollDown(driver, 1)
+    time.sleep(5)
+    browser = scrollDown(driver, 1)
+    time.sleep(5)
 
-#     try:
-#         xpath = "//tabs-buttons[@class='justify-center gap-4 mb-8']/div[@class='block transition-all border-0 border-black cursor-pointer selected:border-b-2 selected:font-bold'][3]"
-#         btn = driver.find_element(By.XPATH, xpath)
-#         driver.execute_script("arguments[0].click();", btn)
-#         xpath2="//tabs-panels/div[@class='block mt-4']/div[@class='text-sm']/div"
-#         df.ingredients[i] = driver.find_element(By.XPATH, xpath2).text
-#     except NoSuchElementException:
-#         df.ingredients[i] = 'No Info'
-#     df.to_csv('datasets/cosmetic.csv', encoding = 'utf-8-sig', index = False)
-#     print(i)
+    #get ingredients
+    try:
+        xpath = "//tabs-buttons[@class='justify-center gap-4 mb-8']/div[@class='block transition-all border-0 border-black cursor-pointer selected:border-b-2 selected:font-bold'][3]"
+        btn = driver.find_element(By.XPATH, xpath)
+        driver.execute_script("arguments[0].click();", btn)
+        xpath2="//tabs-panels/div[@class='block mt-4']/div[@class='text-sm']/div"
+        df.ingredients[i] = driver.find_element(By.XPATH, xpath2).text
+    except NoSuchElementException:
+        df.ingredients[i] = 'No Info'
+    df.to_csv('datasets/cosmetic.csv', encoding = 'utf-8-sig', index = False)
+    #control iteration
+    print(i)
 
-# print(df)
+print(df)
 
-# df.to_csv('datasets/cosmetic.csv', encoding = 'utf-8-sig', index = False)
+df.to_csv('datasets/cosmetic.csv', encoding = 'utf-8-sig', index = False)
