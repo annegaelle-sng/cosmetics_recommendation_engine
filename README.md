@@ -10,7 +10,7 @@ So why not build a ingredient-based recommendation tool to find new products?
 
 In this project, we use the data scrapped from the French website [labelleboucle.fr](https://labelleboucle.fr) which is a website selling hair products with clean and natural composition held by the influencer of the same name. 
 
-![alt](https://images.unsplash.com/photo-1580618864180-f6d7d39b8ff6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2938&q=80)
+![alt](https://images.unsplash.com/photo-1608571424275-18c8d1dae768?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)
 
 ## Build with: 
 <ul>
